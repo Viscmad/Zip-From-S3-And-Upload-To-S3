@@ -1,0 +1,41 @@
+# Node docker image on which this would be run
+image: node:14.18.1
+
+stages:
+  - install_dependencies
+  - test
+  - deploy
+
+
+install_dependencies:
+  stage: install_dependencies
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules 
+  cache:
+    paths:
+      - node_modules
+    
+    
+tests:
+  stage: test
+  script:
+    - npm run test 
+  artifacts:
+    paths:
+      - public
+
+
+deploy:
+  stage: deploy
+  image: 
+    name: doctrine/nodejs-aws-cli
+    entrypoint: [""]
+  only:
+    - master
+  script:
+    - node --version
+    - zip -r function.zip .
+    - aws lambda update-function-code --function-name zipAndUploadToS3 --zip-file fileb://function.zip
