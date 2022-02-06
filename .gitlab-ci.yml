@@ -36,6 +36,5 @@ deploy:
   only:
     - master
   script:
-    - node --version
     - zip -r function.zip .
     - aws lambda update-function-code --function-name zipAndUploadToS3 --zip-file fileb://function.zip
