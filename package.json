@@ -1,0 +1,12 @@
+{
+	"name": "Zip-From-S3-And-Upload-To-S3",
+	"scripts": {
+		"test": "mocha"
+	},
+	"dependencies": {
+		"s3-zip": "^3.2.0"
+	},
+	"devDependencies": {
+		"mocha": "^9.1.3"
+	}
+}
